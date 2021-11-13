@@ -12,14 +12,17 @@ def create_dictionary(filename):
     file.close()
 
     # Seperate sentences into lists
-    sentence_list = contents.split('.')
-
+    # and remove last sentence with empty string
+    sentence_list = create_sentence_list(filename)
 
     # Iterate through every sentence
     for sentence in sentence_list:
 
+        # Remove leading whitespaces
+        sentence = sentence.strip()
+
         # Seperate words into lists
-        word_list = contents.split(' ')
+        word_list = sentence.split(' ')
 
         # Handle first word of sentence
         dictionary[sentence_start].append(word_list[0])
@@ -38,3 +41,15 @@ def create_dictionary(filename):
             dictionary[current_word].append(next_word)        
             
     return dictionary
+
+def create_sentence_list(filename):
+    file = open(filename, 'r')
+    contents = file.read()
+    file.close()
+
+    sentence_list = contents.split('.')
+
+    sentence_list.pop(-1)
+
+    return [sentence + '.' for sentence in sentence_list]
+

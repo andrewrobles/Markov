@@ -1,6 +1,15 @@
 import unittest
 
 from markov import create_dictionary
+from markov import create_sentence_list
+
+
+class TestSentenceList(unittest.TestCase):
+
+    def test_1(self):
+        filename = 'sample.txt'
+        actual = create_sentence_list('sample.txt')
+        expected = ['A B A.' 'A B C.' 'B A C.' 'C C C.']
 
 class TestMarkov(unittest.TestCase):
 
@@ -14,6 +23,8 @@ class TestMarkov(unittest.TestCase):
             '$': ['A', 'A', 'B', 'C']
         }
 
+        self.assertEqual(actual['$'], expected['$'])
+        self.assertEqual(actual['A'], expected['A'])
         self.assertEqual(actual, expected)
 
     def test_simple(self):        
