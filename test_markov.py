@@ -4,7 +4,7 @@ from markov import create_dictionary
 
 class TestMarkov(unittest.TestCase):
 
-    def test_sample(self):
+    def test_sample(self):        
         filename = 'sample.txt'        
         actual = create_dictionary(filename)
         expected = {
@@ -12,6 +12,16 @@ class TestMarkov(unittest.TestCase):
             'C': ['C', 'C.'],
             'B': ['A.', 'C.', 'A'], 
             '$': ['A', 'A', 'B', 'C']
+        }
+
+        self.assertEqual(actual, expected)
+
+    def test_simple(self):        
+        filename = 'simple.txt'        
+        actual = create_dictionary(filename)
+        expected = {
+            '$': ['ROMEO'],
+            'ROMEO': ['AND']
         }
 
         self.assertEqual(actual, expected)
