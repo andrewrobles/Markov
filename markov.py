@@ -47,9 +47,12 @@ def create_sentence_list(filename):
     contents = file.read()
     file.close()
 
+    chars = ['.', '!']
+    char_list = [char for char in chars if char in contents]
+    contents.replace('!', '.')
     sentence_list = contents.split('.')
 
-    sentence_list.pop(-1)
+    # sentence_list.pop(-1)
 
-    return [sentence + '.' for sentence in sentence_list]
+    return [sentence.strip().replace('\n', '') + '.' for sentence in sentence_list]
 
